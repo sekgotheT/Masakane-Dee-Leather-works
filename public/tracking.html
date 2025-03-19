@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masakane Dee-Leather Works - track your order</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Track Your Order</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="order.html">Order</a>
+            <a href="payment.html">Payment</a>
+            <a href="upload.html">Upload Product</a>
+            <a href="tracking.html">Tracking</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Track Your Order</h2>
+        <p>Enter your tracking number to check the status of your order.</p>
+        <input type="text" id="trackingNumber" placeholder="Enter your tracking number" required>
+        <button onclick="trackOrder()">Track</button>
+        <div id="trackingResult"></div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Leather Works. All rights reserved.</p>
+        <nav>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="contact.html">Contact Us</a>
+        </nav>
+        <div class="social-media">
+            <a href="#">Facebook</a> |
+            <a href="#">Twitter</a> |
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+    <script src="routes/ordertracking.js"></script>
+    <script src="routes/orderstatus.js"></script>
+
+</body>
+</html>

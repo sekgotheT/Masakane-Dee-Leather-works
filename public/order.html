@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masakane Dee-Leather Works - Order</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Leather Works - Order</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="order.html">Order</a>
+            <a href="payment.html">Payment</a>
+            <a href="upload.html">Upload Product</a>
+            <a href="tracking.html">Tracking</a>
+             <a href="admin.html">admin</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Place Your Order</h2>
+        <p>Fill out the form below to order your favorite leather products.</p>
+        <form id="orderForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+
+            <label for="product">Product:</label>
+            <input type="text" id="product" name="product" placeholder="Product Name" required>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" placeholder="1" required>
+
+            <label for="address">Delivery Address:</label>
+            <textarea id="address" name="address" placeholder="Your Full Address" required></textarea>
+
+            <label for="comments">Additional Comments:</label>
+            <textarea id="comments" name="comments" placeholder="Any special instructions..."></textarea>
+
+            <button type="submit" class="btn">Place Order</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2025 Leather Works. All rights reserved.</p>
+        <nav>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="contact.html">Contact Us</a>
+        </nav>
+        <div class="social-media">
+            <a href="#">Facebook</a> |
+            <a href="#">Twitter</a> |
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+    <script>
+  document.getElementById('orderForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const orderData = {
+      user: document.getElementById('userId').value,
+      address: document.getElementById('address').value,
+      products: [
+        // Example products (you would dynamically get this)
+        { productId: '12345', quantity: 1 },
+        { productId: '67890', quantity: 2 }
+      ],
+      totalAmount: 100
+    };
+
+    const response = await fetch('http://localhost:5000/api/orders/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(orderData)
+    });
+
+    const result = await response.json();
+    alert(result.message || 'Order placed successfully');
+  });
+</script>
+    <script src="../models/order.js"></script>
+     <script src="../app.js"></script>
+</body>
+</html>

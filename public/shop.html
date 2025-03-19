@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masakane Dee-Leather Works - Shop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Leather Works - Shop</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="order.html">Order</a>
+            <a href="payment.html">Payment</a>
+            <a href="upload.html">Upload Product</a>
+             <a href="admin.html">admin</a>
+            <a href="tracking.html">Tracking</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Shop Our Premium Leather Products</h2>
+        <p>Discover our wide range of handcrafted leather items.</p>
+        <div class="promo-banner">
+            <h2>Exclusive Offer: 20% Off on All Leather Bags!</h2>
+            <p>Use code: LEATHER20 at checkout.</p>
+            <a href="payment.html" class="btn">Shop Now</a>
+        </div>
+        <div class="product-gallery" id="product-list">
+            <!-- Dynamic products will be displayed here -->
+        </div>
+        <section class="customer-reviews">
+            <h2>Customer Feedback</h2>
+            <div class="review">
+                <p>"Absolutely loved the quality of the leather bags. Worth every penny!"</p>
+                <h4>- Amanda S.</h4>
+            </div>
+            <div class="review">
+                <p>"Fast shipping and great customer support. Will buy again!"</p>
+                <h4>- John D.</h4>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Leather Works. All rights reserved.</p>
+        <nav>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="contact.html">Contact Us</a>
+        </nav>
+        <div class="social-media">
+            <a href="#">Facebook</a> |
+            <a href="#">Twitter</a> |
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+    <script>
+  async function fetchProducts() {
+    const response = await fetch('http://localhost:5000/api/products');
+    const products = await response.json();
+
+    const productsContainer = document.getElementById('products');
+    products.forEach(product => {
+      const productElement = document.createElement('div');
+      productElement.innerHTML = `
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <p>Price: $${product.price}</p>
+        <img src="${product.imageUrl}" alt="${product.name}" width="200">
+      `;
+      productsContainer.appendChild(productElement);
+    });
+  }
+
+  fetchProducts();
+</script>
+    <script src="app.js"></script>
+</body>
+</html>
