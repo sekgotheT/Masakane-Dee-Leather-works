@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masakane Dee-Leather Works - Home</title>
+    <link rel="stylesheet" href="public/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Masakane D-Leather Works</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="public/shop.html">Shop</a>
+            <a href="public/order.html">Order</a>
+            <a href="public/payment.html">Payment</a>
+            <a href="public/upload.html">Upload Product</a>
+            <a href="public/tracking.html">Tracking</a>
+             <a href="public/admin.html">admin</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Welcome to Leather Works</h2>
+        <p>Your one-stop shop for quality leather products.</p>
+        <p>We provide the best quality leather items to suit your lifestyle.</p>
+        <p>Specializing in premium leather products.</p>
+    </main>
+
+    <section class="featured-products">
+        <h2>Our Collection</h2>
+        <div class="product-gallery">
+            <div class="product-card">
+                <img src="images/product1.jpg" alt="Leather Belt">
+                <h3>Leather Belt</h3>
+                <p>R250.00</p>
+                <a href="public/shop.html" class="btn">Buy Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/product2.jpg" alt="Leather Handbag">
+                <h3>Leather Handbag</h3>
+                <p>R800.00</p>
+                <a href="public/shop.html" class="btn">Buy Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/product3.jpg" alt="Leather Wallet">
+                <h3>Leather Wallet</h3>
+                <p>R150.00</p>
+                <a href="public/shop.html" class="btn">Buy Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="promo-banner">
+        <h2>Special Sale - Up to 50% Off!</h2>
+        <p>Grab the best deals on our exclusive collections.</p>
+        <a href="public/shop.html" class="btn">Shop Deals</a>
+    </section>
+
+    <section class="customer-reviews">
+        <h2>What They Say</h2>
+        <div class="review">
+            <p>"The best quality products and service! Highly recommended."</p>
+            <h4>- John D.</h4>
+        </div>
+        <div class="review">
+            <p>"A seamless shopping experience and quick delivery."</p>
+            <h4>- Mark T.</h4>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <h2>Stay Updated!</h2>
+        <p>Subscribe to our newsletter for the latest updates.</p>
+        <form action="subscribe.html" method="post">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit" class="btn">Subscribe</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Leather Works. All rights reserved.</p>
+        <nav>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="contact.html">Contact Us</a>
+        </nav>
+        <div class="social-media">
+            <a href="#">Facebook</a> |
+            <a href="#">Twitter</a> |
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+      <script src="script.js"></script>
+       <script src="index.js"></script>
+
+    <!-- Modal Structure -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Product Image">
+        </div>
+    </div>
+</body>
+</html>
