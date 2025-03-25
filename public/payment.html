@@ -14,26 +14,37 @@
             <a href="shop.html">Shop</a>
             <a href="order.html">Order</a>
             <a href="payment.html">Payment</a>
-             <a href="admin.html">admin</a>
+            <a href="admin.html">Admin</a>
             <a href="upload.html">Upload Product</a>
             <a href="tracking.html">Tracking</a>
         </nav>
     </header>
+    
     <main>
         <h2>Complete Your Payment</h2>
         <p>Secure payment options to complete your purchase.</p>
+
+        <!-- Payment Form -->
         <form id="paymentForm">
             <label for="cardNumber">Card Number:</label>
-            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" required>
-            <label for="expiryDate">Expiry Date:</label>
-            <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" required pattern="\d{4} \d{4} \d{4} \d{4}" title="Card number must be 16 digits" />
+
+            <label for="expiryDate">Expiry Date (MM/YY):</label>
+            <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required pattern="(0[1-9]|1[0-2])\/\d{2}" title="Valid expiry date format: MM/YY" />
+
             <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" name="cvv" placeholder="123" required>
+            <input type="text" id="cvv" name="cvv" placeholder="123" required pattern="\d{3}" title="CVV must be 3 digits" />
+
             <label for="nameOnCard">Name on Card:</label>
-            <input type="text" id="nameOnCard" name="nameOnCard" placeholder="John Doe" required>
+            <input type="text" id="nameOnCard" name="nameOnCard" placeholder="John Doe" required />
+
             <button type="submit">Pay Now</button>
         </form>
+
+        <!-- Payment Status -->
+        <div id="paymentStatus"></div>
     </main>
+
     <footer>
         <p>&copy; 2025 Leather Works. All rights reserved.</p>
         <nav>
@@ -47,6 +58,53 @@
             <a href="#">Instagram</a>
         </div>
     </footer>
+
     <script src="../routes/payment.js"></script>
-     <script src="../app.js"></script>
-</body
+    <script src="../app.js"></script>
+
+    <script>
+        // Handle the payment form submission
+        document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const cardNumber = document.getElementById('cardNumber').value;
+            const expiryDate = document.getElementById('expiryDate').value;
+            const cvv = document.getElementById('cvv').value;
+            const nameOnCard = document.getElementById('nameOnCard').value;
+
+            // Basic Validation
+            if (!cardNumber || !expiryDate || !cvv || !nameOnCard) {
+                alert('All fields are required');
+                return;
+            }
+
+            // Prepare payment data (add backend logic for actual payment processing)
+            const paymentData = {
+                cardNumber,
+                expiryDate,
+                cvv,
+                nameOnCard
+            };
+
+            try {
+                // Call your backend to process the payment (assume the endpoint is '/api/payment')
+                const response = await fetch('http://localhost:5000/api/payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(paymentData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    document.getElementById('paymentStatus').innerHTML = `<p>Payment successful! Thank you for your purchase.</p>`;
+                } else {
+                    document.getElementById('paymentStatus').innerHTML = `<p>Error: ${result.message || 'Payment failed. Please try again.'}</p>`;
+                }
+            } catch (error) {
+                document.getElementById('paymentStatus').innerHTML = `<p>Error: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
