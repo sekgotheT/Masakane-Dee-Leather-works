@@ -4,8 +4,9 @@ const bcrypt = require('bcryptjs'); // Secure password handling
 const router = express.Router();
 
 // Simulated Admin Credentials (Replace with Database in Future)
-const adminUsername = process.env.ADMIN_USERNAME;
-const hashedAdminPassword = process.env.ADMIN_PASSWORD_HASH; // Store a hashed password in .env
+const adminUsername = process.env.sekgothethsepang30@gmail.com;
+const hashedAdminPassword = process.env.ADMIN_PASSWORD_HASH=$2a$10$0GKwU9jC5Aov3FQmB5j4aO6IhOVt1mXq8JsNWW2XaEX.yzD5Sx6IW
+; // Store a hashed password in .env
 
 // Admin Login Route
 router.post('/login', async (req, res) => {
