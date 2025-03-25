@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -11,22 +12,32 @@
         <nav>
             <a href="../index.html">Home</a>
             <a href="shop.html">Shop</a>
-            <a href="order.html">Order</a>
-            <a href="payment.html">Payment</a>
+            <a href="order.html">Orders</a>
+            <a href="payment.html">Payments</a>
             <a href="upload.html">Upload Product</a>
-            <a href="admin.html">admin</a>
-            <a href="tracking.html">tracking</a>
-            <a href="whishlist.html">whishlist</a>
+            <a href="tracking.html">Order Tracking</a>
+            <a href="wishlist.html">Wishlist</a> <!-- Fixed spelling of wishlist -->
         </nav>
     </header>
+
     <main>
-        <h2>Manage Products</h2>
-        <div id="admin-products"></div>
-        <h2>Orders</h2>
-        <div id="admin-orders"></div>
+        <section>
+            <h2>Manage Products</h2>
+            <div id="admin-products">
+                <!-- Dynamic Product List will be inserted here -->
+            </div>
+        </section>
+
+        <section>
+            <h2>Manage Orders</h2>
+            <div id="admin-orders">
+                <!-- Dynamic Order List will be inserted here -->
+            </div>
+        </section>
     </main>
+
     <script src="../app.js"></script>
-     <script src="../index.js"></script>
-      <script src="../rotes/admin.js.js"></script>
+    <script src="../index.js"></script>
+    <script src="../routes/admin.js"></script> <!-- Fixed path -->
 </body>
 </html>
