@@ -1,18 +1,39 @@
-// routes/auth.js
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs'); // Secure password handling
 const router = express.Router();
 
+// Simulated Admin Credentials (Replace with Database in Future)
+const adminUsername = process.env.ADMIN_USERNAME;
+const hashedAdminPassword = process.env.ADMIN_PASSWORD_HASH; // Store a hashed password in .env
+
+// Admin Login Route
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
-  
-  // Normally, validate username and password with a database.
-  if (username === process.env.ADMIN_USERNAME && password === process.env.ADMIN_PASSWORD) {
-    const token = jwt.sign({ username }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
-    res.status(200).json({ token });
-  } else {
-    res.status(400).json({ error: 'Invalid credentials' });
+
+  if (!adminUsername || !hashedAdminPassword) {
+    return res.status(500).json({ error: 'Server misconfiguration. Admin credentials are missing.' });
   }
+
+  // Check Username
+  if (username !== adminUsername) {
+    return res.status(401).json({ error: 'Invalid username or password' });
+  }
+
+  // Verify Password
+  const isPasswordValid = await bcrypt.compare(password, hashedAdminPassword);
+  if (!isPasswordValid) {
+    return res.status(401).json({ error: 'Invalid username or password' });
+  }
+
+  // Generate JWT Token
+  const token = jwt.sign(
+    { username, role: 'admin' },
+    process.env.JWT_SECRET_KEY,
+    { expiresIn: '2h' } // Extended session duration
+  );
+
+  res.status(200).json({ token, message: 'Login successful' });
 });
 
 module.exports = router;
