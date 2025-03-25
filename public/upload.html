@@ -50,6 +50,7 @@
 
                 <button type="submit">Upload</button>
             </form>
+            <div id="uploadStatus"></div>
         </section>
     </main>
     <footer>
@@ -64,6 +65,8 @@
         document.getElementById('uploadForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
+            const uploadStatus = document.getElementById('uploadStatus');
+            uploadStatus.textContent = 'Uploading...';
             
             try {
                 const response = await fetch('http://localhost:5000/api/products/upload', {
@@ -72,18 +75,17 @@
                 });
                 
                 const result = await response.json();
-                alert(result.message || 'Product uploaded successfully');
+                uploadStatus.textContent = result.message || 'Product uploaded successfully';
+                uploadStatus.style.color = 'green';
             } catch (error) {
                 console.error('Error uploading product:', error);
-                alert('Failed to upload product. Please try again.');
+                uploadStatus.textContent = 'Failed to upload product. Please try again.';
+                uploadStatus.style.color = 'red';
             }
         });
     </script>
-     <script src="models/product.js"></script>
-     <script src="../app.js"></script>
-
-      <script src="../index.js"></script>
+    <script src="models/product.js"></script>
+    <script src="../app.js"></script>
+    <script src="../index.js"></script>
 </body>
 </html>
-
-
