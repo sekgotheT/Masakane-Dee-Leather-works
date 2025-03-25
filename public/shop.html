@@ -15,36 +15,41 @@
             <a href="order.html">Order</a>
             <a href="payment.html">Payment</a>
             <a href="upload.html">Upload Product</a>
-             <a href="admin.html">admin</a>
+            <a href="admin.html">Admin</a>
             <a href="tracking.html">Tracking</a>
         </nav>
     </header>
+    
     <main>
         <h2>Shop Our Premium Leather Products</h2>
-         <p>we specialize in leather items only.</p>
-        <p>Discover our wide range of handcrafted leather items.</p>
+        <p>We specialize in handcrafted leather items.</p>
+        <p>Discover our wide range of premium leather goods.</p>
+
         <div class="promo-banner">
             <h2>Exclusive Offer: 20% Off on All Leather Bags!</h2>
             <p>Use code: LEATHER20 at checkout.</p>
             <a href="payment.html" class="btn">Shop Now</a>
         </div>
+
         <div class="product-gallery" id="product-list">
             <!-- Dynamic products will be displayed here -->
         </div>
+
         <section class="customer-reviews">
             <h2>Customer Feedback</h2>
             <div class="review">
                 <p>"Absolutely loved the quality of the leather bags. Worth every penny!"</p>
-                <h4>- .</h4>
+                <h4>- John D.</h4>
             </div>
             <div class="review">
                 <p>"Fast shipping and great customer support. Will buy again!"</p>
-                <h4>- .</h4>
+                <h4>- Sarah M.</h4>
             </div>
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2025 Masakane dee-Leather Works. All rights reserved.</p>
+        <p>&copy; 2025 Masakane Dee-Leather Works. All rights reserved.</p>
         <nav>
             <a href="privacy.html">Privacy Policy</a> |
             <a href="terms.html">Terms of Service</a> |
@@ -56,26 +61,48 @@
             <a href="#">Instagram</a>
         </div>
     </footer>
+
     <script>
-  async function fetchProducts() {
-    const response = await fetch('http://localhost:5000/api/products');
-    const products = await response.json();
+        async function fetchProducts() {
+            try {
+                const response = await fetch('http://localhost:5000/api/products');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch products');
+                }
+                const products = await response.json();
+                const productsContainer = document.getElementById('product-list');
 
-    const productsContainer = document.getElementById('products');
-    products.forEach(product => {
-      const productElement = document.createElement('div');
-      productElement.innerHTML = `
-        <h3>${product.name}</h3>
-        <p>${product.description}</p>
-        <p>Price: $${product.price}</p>
-        <img src="${product.imageUrl}" alt="${product.name}" width="200">
-      `;
-      productsContainer.appendChild(productElement);
-    });
-  }
+                if (products.length === 0) {
+                    productsContainer.innerHTML = '<p>No products available at the moment.</p>';
+                    return;
+                }
 
-  fetchProducts();
-</script>
+                products.forEach(product => {
+                    const productElement = document.createElement('div');
+                    productElement.classList.add('product');
+
+                    productElement.innerHTML = `
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <p><strong>Price:</strong> $${product.price}</p>
+                        <img src="${product.imageUrl}" alt="${product.name}" class="product-image">
+                        <a href="order.html?id=${product.id}" class="btn">Add to Cart</a>
+                    `;
+
+                    productsContainer.appendChild(productElement);
+                });
+            } catch (error) {
+                console.error('Error fetching products:', error);
+                const productsContainer = document.getElementById('product-list');
+                productsContainer.innerHTML = `<p>Sorry, there was an error loading the products.</p>`;
+            }
+        }
+
+        fetchProducts();
+    </script>
+
     <script src="app.js"></script>
+    <script src="index.js"></script>
+    <script src="script.js.js"></script>
 </body>
 </html>
