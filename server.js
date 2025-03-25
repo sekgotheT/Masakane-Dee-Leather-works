@@ -1,41 +1,56 @@
+require('dotenv').config();
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 
 const app = express();
+const PORT = process.env.PORT || 5000;
+
+// Middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-app.post('/send-email', (req, res) => {
-    const { email, subject, message } = req.body;
+// Email Sending Route
+app.post('/send-email', async (req, res) => {
+    try {
+        const { email, subject, message } = req.body;
 
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'youremail@gmail.com',
-            pass: 'yourpassword'
+        if (!email || !subject || !message) {
+            return res.status(400).json({ error: 'All fields are required' });
         }
-    });
 
-    const mailOptions = {
-        from: 'youremail@gmail.com',
-        to: email,
-        subject: subject,
-        text: message
-    };
+        // Email Transporter
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS
+            }
+        });
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log(error);
-            res.status(500).send('Error sending email');
-        } else {
-            console.log('Email sent: ' + info.response);
-            res.send('Email sent successfully');
-        }
-    });
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject,
+            text: message
+        };
+
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Email sent: ', info.response);
+        res.status(200).json({ message: 'Email sent successfully' });
+
+    } catch (error) {
+        console.error('Email sending error:', error);
+        res.status(500).json({ error: 'Error sending email' });
+    }
 });
 
-app.listen(3000, () => {
-    console.log('Node.js server running on port 3000');
+// Root API Check
+app.get('/', (req, res) => {
+    res.send('Leather Works API is running smoothly 🚀');
+});
+
+// Start Server
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
