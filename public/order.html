@@ -16,13 +16,17 @@
             <a href="payment.html">Payment</a>
             <a href="upload.html">Upload Product</a>
             <a href="tracking.html">Tracking</a>
-             <a href="admin.html">admin</a>
+            <a href="admin.html">Admin</a>
         </nav>
     </header>
+
     <main>
         <h2>Place Your Order</h2>
         <p>Fill out the form below to order your favorite leather products.</p>
         <form id="orderForm">
+            <!-- Hidden User ID Field (if needed) -->
+            <input type="hidden" id="userId" value="USER_ID_FROM_SESSION_OR_COOKIE">
+
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" placeholder="Your Name" required>
             
@@ -47,6 +51,7 @@
             <button type="submit" class="btn">Place Order</button>
         </form>
     </main>
+
     <footer>
         <p>&copy; 2025 Leather Works. All rights reserved.</p>
         <nav>
@@ -60,34 +65,35 @@
             <a href="#">Instagram</a>
         </div>
     </footer>
+
     <script>
-  document.getElementById('orderForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
+        document.getElementById('orderForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-    const orderData = {
-      user: document.getElementById('userId').value,
-      address: document.getElementById('address').value,
-      products: [
-        // Example products (you would dynamically get this)
-        { productId: '12345', quantity: 1 },
-        { productId: '67890', quantity: 2 }
-      ],
-      totalAmount: 100
-    };
+            const orderData = {
+                user: document.getElementById('userId').value,
+                address: document.getElementById('address').value,
+                products: [
+                    { productId: '12345', quantity: 1 },
+                    { productId: '67890', quantity: 2 }
+                ],
+                totalAmount: 100
+            };
 
-    const response = await fetch('http://localhost:5000/api/orders/create', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(orderData)
-    });
+            const response = await fetch('http://localhost:5000/api/orders/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(orderData)
+            });
 
-    const result = await response.json();
-    alert(result.message || 'Order placed successfully');
-  });
-</script>
+            const result = await response.json();
+            alert(result.message || 'Order placed successfully');
+        });
+    </script>
+
     <script src="../models/order.js"></script>
-     <script src="../app.js"></script>
+    <script src="../app.js"></script>
 </body>
 </html>
