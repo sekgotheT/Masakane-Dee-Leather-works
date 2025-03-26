@@ -5,51 +5,69 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    line-height: 1.6;
 }
 
 /* Header Styles */
 header {
-    background-color: #222;
+    background-color: #1a1a1a;
     color: #fff;
     padding: 20px 0;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin: 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+header nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 header nav a {
     color: #fff;
     text-decoration: none;
-    margin: 0 15px;
+    margin: 0 20px;
     font-size: 1.1rem;
     font-weight: 600;
     text-transform: uppercase;
-    transition: color 0.3s ease-in-out;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 header nav a:hover {
     color: #ff9900;
+    transform: translateY(-3px);
 }
 
 /* Main Section */
 main {
+    padding: 100px 20px 40px;
     text-align: center;
-    padding: 40px 0;
     background-color: #fff;
 }
 
 main h2 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
 }
 
 main p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #666;
-    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 40px;
 }
 
 /* Featured Products Section */
@@ -59,8 +77,10 @@ main p {
 }
 
 .featured-products h2 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
     color: #333;
 }
 
@@ -68,17 +88,16 @@ main p {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
 }
 
 .product-card {
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     width: 250px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
 }
 
 .product-card img {
@@ -89,7 +108,7 @@ main p {
 }
 
 .product-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin: 10px 0;
     color: #333;
 }
@@ -103,20 +122,21 @@ main p {
 .product-card .btn {
     background-color: #ff9900;
     color: #fff;
-    padding: 10px 20px;
-    font-size: 1rem;
+    padding: 12px 25px;
+    font-size: 1.1rem;
     text-decoration: none;
     border-radius: 5px;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .product-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
 .product-card:hover .btn {
     background-color: #333;
+    transform: scale(1.05);
 }
 
 .product-card img:hover {
@@ -128,26 +148,29 @@ main p {
     background-color: #222;
     color: #fff;
     text-align: center;
-    padding: 40px 0;
+    padding: 50px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .promo-banner h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .promo-banner p {
     font-size: 1.2rem;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .promo-banner .btn {
     background-color: #ff9900;
     color: #fff;
-    padding: 12px 25px;
+    padding: 15px 30px;
     font-size: 1.1rem;
     text-decoration: none;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .promo-banner .btn:hover {
@@ -158,24 +181,26 @@ main p {
 .customer-reviews {
     background-color: #f9f9f9;
     text-align: center;
-    padding: 40px 0;
+    padding: 50px 20px;
 }
 
 .customer-reviews h2 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 30px;
     color: #333;
+    font-weight: bold;
 }
 
 .review {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #555;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto 30px;
+    line-height: 1.8;
 }
 
 .review h4 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #333;
     margin-top: 10px;
 }
@@ -185,30 +210,32 @@ main p {
     background-color: #ff9900;
     color: #fff;
     text-align: center;
-    padding: 50px 20px;
+    padding: 60px 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .newsletter h2 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .newsletter p {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
 }
 
 .newsletter form {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    max-width: 600px;
+    gap: 15px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
 .newsletter input {
-    padding: 12px;
-    font-size: 1rem;
+    padding: 15px;
+    font-size: 1.1rem;
     border-radius: 5px;
     border: none;
     outline: none;
@@ -218,11 +245,12 @@ main p {
 .newsletter button {
     background-color: #333;
     color: #fff;
-    padding: 12px 20px;
-    font-size: 1rem;
+    padding: 15px 25px;
+    font-size: 1.2rem;
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .newsletter button:hover {
@@ -234,7 +262,8 @@ footer {
     background-color: #222;
     color: #fff;
     text-align: center;
-    padding: 20px 0;
+    padding: 30px 0;
+    margin-top: 50px;
 }
 
 footer p {
@@ -245,8 +274,8 @@ footer p {
 footer nav a {
     color: #fff;
     text-decoration: none;
-    margin: 0 15px;
-    font-size: 1rem;
+    margin: 0 20px;
+    font-size: 1.1rem;
 }
 
 footer nav a:hover {
@@ -256,8 +285,8 @@ footer nav a:hover {
 footer .social-media a {
     color: #fff;
     text-decoration: none;
-    margin: 0 10px;
-    font-size: 1.2rem;
+    margin: 0 15px;
+    font-size: 1.5rem;
 }
 
 footer .social-media a:hover {
@@ -282,7 +311,7 @@ footer .social-media a:hover {
     margin: auto;
     display: block;
     width: 80%;
-    max-width: 700px;
+    max-width: 750px;
 }
 
 .modal img {
