@@ -34,6 +34,24 @@ router.get('/products', authenticateAdmin, async (req, res) => {
   }
 });
 
+// Fetching products from the backend
+fetch('/api/admin/products')
+  .then(response => response.json())
+  .then(data => {
+    // Render products to the page
+    const productList = document.getElementById('productList');
+    data.products.forEach(product => {
+      const productItem = document.createElement('div');
+      productItem.innerHTML = `
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <p>Price: $${product.price}</p>
+      `;
+      productList.appendChild(productItem);
+    });
+  })
+  .catch(error => console.log(error));
+
 // Admin can view all orders (with filtering & pagination)
 router.get('/orders', authenticateAdmin, async (req, res) => {
   try {
