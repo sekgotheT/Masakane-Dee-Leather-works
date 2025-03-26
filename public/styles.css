@@ -5,6 +5,7 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    box-sizing: border-box;
 }
 
 /* Header Styles */
@@ -302,4 +303,67 @@ footer .social-media a:hover {
 
 .modal-close:hover {
     color: #ff9900;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    header nav a {
+        font-size: 1rem;
+        margin: 0 10px;
+    }
+
+    .product-gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-card {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .newsletter form {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .newsletter input {
+        width: 80%;
+    }
+
+    .newsletter button {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+
+    .footer {
+        padding: 15px;
+    }
+}
+
+/* Improved Button Styles */
+button, .btn {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: #ff6600;
+    transform: scale(1.05);
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ff9900;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ff6600;
 }
